@@ -70,5 +70,9 @@ public class CurrencyStaticsProvider {
                 .filter(cd -> cd.getCurrencyShortName().length() != 3 || !cd.getCurrencyShortName().equals(cd.getCurrencyShortName().toUpperCase()))
                 .findAny().ifPresent(cd -> {throw new RuntimeException();});
     }
+    public Double sumAllAmounts(final List<CurrencyData> currencyData) {
+        return currencyData.stream()
+                .map(CurrencyData::getAmount).mapToDouble(d -> d).sum();
+    }
 
 }
