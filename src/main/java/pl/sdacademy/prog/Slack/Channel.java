@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.Email;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,5 +32,11 @@ public class Channel {
         if (!userExists) {
             users.add(user);
         }
+    }
+    public List<String> getAllMessagesAsStrings() {
+        return messages.stream()
+                .map(Message::getReadableMessage)
+                .collect(Collectors.toList());
+
     }
 }
